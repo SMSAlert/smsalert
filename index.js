@@ -1,29 +1,15 @@
-"use strict";
 const core = require('@actions/core');
-const SMS = require('smsalert');
-async function run() {
-    const senderid = core.getInput('senderid');
-    const to = core.getInput('toPhoneNumber');
-    const message = core.getInput('message');
-    const username = core.getInput('SMSALERT_USERNAME') || process.env.SMSALERT_USERNAME;
-    const password = core.getInput('SMSALERT_PASSWORD') || process.env.SMSALERT_PASSWORD;
-   
-    core.debug('Sending SMS');
-	const sms = new SMS(username, password)
-	sms.send(to, message,senderid)
-    .then(body => console.log(body)) // returns { message_id: 'string' }
-  .catch(err => console.log(err.message))
-    core.debug('SMS sent!');
-    return body;
+const github = require('@actions/github');
+
+try {
+  // `who-to-greet` input defined in action metadata file
+  const nameToGreet = core.getInput('who-to-greet');
+  console.log(`Hello ${nameToGreet}!`);
+  const time = (new Date()).toTimeString();
+  core.setOutput("time", time);
+  // Get the JSON webhook payload for the event that triggered the workflow
+  const payload = JSON.stringify(github.context.payload, undefined, 2)
+  console.log(`The event payload: ${payload}`);
+} catch (error) {
+  core.setFailed(error.message);
 }
-async function execute() {
-    try {
-        return await run();
-    }
-    catch ({ message }) {
-        core.error('Failed to send message', message);
-        core.setFailed(message);
-    }
-}
-module.exports = execute;
-execute();
