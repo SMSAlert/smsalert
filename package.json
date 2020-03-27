@@ -1,0 +1,24 @@
+{
+  "name": "smsalert",
+  "version": "1.0.0",
+  "description": "github actions to send sms",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brijkishor7828/smsalert.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brijkishor7828/smsalert/issues"
+  },
+  "homepage": "https://github.com/brijkishor7828/smsalert#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.3",
+    "@actions/github": "^2.1.1"
+  }
+}
