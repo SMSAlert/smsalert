@@ -1,18 +1,9 @@
 const core = require('@actions/core');
-const Nexmo = require('nexmo');
+const SMS = require('smsalert');
 
-const nexmo = new Nexmo({
-  "apiKey": process.env.NEXMO_API_KEY,
-  "apiSecret": process.env.NEXMO_API_SECRET,
-});
+const sms = new SMS(username, password);
 
-nexmo.message.sendSms(
-  core.getInput('nexmoNumber'),
-  core.getInput('recipientNumber'),
-  core.getInput('message'),
-  function(err, data) {
-    if (err) {
-     return core.setFailed(err);
-    }
-  }
-);
+sms.send(to, message,senderid)
+    .then(body => console.log(body)) // returns { message_id: 'string' }
+  .catch(err => console.log(err.message))
+    core.debug('SMS sent!');
