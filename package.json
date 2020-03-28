@@ -1,5 +1,5 @@
 {
-  "name": "@twilio-labs/actions-sms",
+  "name": "@brijkishor7828/smsalert",
   "version": "1.0.0",
   "description": "Send an SMS through GitHub Actions",
   "main": "dist/main.js",
@@ -9,20 +9,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/twilio-labs/actions-sms.git"
+    "url": "git+https://github.com/brijkishor7828/smsalert.git"
   },
   "keywords": [
     "github",
     "actions",
-    "twilio",
+    "smsalert",
     "sms"
   ],
-  "author": "Dominik Kundel <dkundel@twilio.com> (https://twilio.com/labs)",
+  "author": "SMSAlert",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/twilio-labs/actions-sms/issues"
+    "url": "https://github.com/brijkishor7828/smsalert/issues"
   },
-  "homepage": "https://github.com/twilio-labs/actions-sms#readme",
+  "homepage": "https://github.com/brijkishor7828/smsalert#readme",
   "dependencies": {
     "@actions/core": "^1.1.0",
     "request-promise": "^4.2.5",

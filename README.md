@@ -1,36 +1,34 @@
-# Twilio SMS GitHub Action
+# SMS Alert GitHub Action
 
 Send an SMS from GitHub Actions.
 
 ## Prerequisites
 
-- A Twilio Account. [Sign up for free](https://www.twilio.com/try-twilio)
-- A [Twilio API Key and Secret](https://www.twilio.com/docs/iam/keys/api-key)
+- A SMSAlert Account. [Sign up for free](https://www.smsalert.co.in)
 
 ## Usage
 
-1. Set up your credentials as secrets in your repository settings using `TWILIO_ACCOUNT_SID`, `TWILIO_API_KEY`, `TWILIO_API_SECRET`
+1. Set up your credentials as secrets in your repository settings using `senderid`, `SMSALERT_USERNAME`, `SMSALERT_PASSWORD`
 
 2. Add the following to your workflow
 
 ```yml
 - name: 'Sending SMS Notification'
-  uses: twilio-labs/actions-sms@v1
+  uses: brijkishor7828/smsalert@v1
   with:
-    fromPhoneNumber: '+1(234)5678901'
-    toPhoneNumber: '+1(234)3334444'
-    message: 'Hello from Twilio'
+    fromPhoneNumber: ${{ secrets.senderid }}
+    toPhoneNumber: ${{ secrets.toPhoneNumber }}
+    message: 'Hello from github'
   env:
-    TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
-    TWILIO_API_KEY: ${{ secrets.TWILIO_API_KEY }}
-    TWILIO_API_SECRET: ${{ secrets.TWILIO_API_SECRET }}
-```
+    SMSALERT_USERNAME: ${{ secrets.SMSALERT_USERNAME }}
+    SMSALERT_PASSWORD: ${{ secrets.SMSALERT_PASSWORD }}
+    ```
 
 ## Inputs
 
 ### `fromPhoneNumber`
 
-**Required** Phone number in your Twilio account to send the SMS from
+**Required** senderid in your SMSAlert account to send the SMS from
 
 ### `toPhoneNumber`
 
@@ -40,23 +38,15 @@ Send an SMS from GitHub Actions.
 
 **Required** The message you want to send
 
-### `TWILIO_ACCOUNT_SID`
+### `SMSALERT_USERNAME`
 
-A Twilio Account SID. Can alternatively be stored in environment
+A SMSAlert Username. Can alternatively be stored in environment
 
-### `TWILIO_API_KEY`
+### `SMSALERT_PASSWORD`
 
-A Twilio API Key. Can alternatively be stored in environment
-
-### `TWILIO_API_SECRET`
-
-A Twilio API Secret. Can alternatively be stored in environment
+A SMSAlert Password. Can alternatively be stored in environment
 
 ## Outputs
-
-### `messageSid`
-
-The SID of the [message resource](https://www.twilio.com/docs/sms/api/message-resource#message-properties) associated with the SMS sent.
 
 ## Contributing
 
@@ -68,6 +58,3 @@ License and other copyright information for each module are included in the rele
 
 More information for each package can be found at `https://www.npmjs.com/package/{package}`
 
-## License
-
-[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
