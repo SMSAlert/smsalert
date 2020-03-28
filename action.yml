@@ -1,9 +1,9 @@
-name: 'Twilio SMS'
-author: 'Twilio Labs'
-description: 'Send an SMS from GitHub Actions using Twilio Programmable SMS'
+name: 'cozyvision-smsalert'
+author: 'SMSAlert'
+description: 'Send an SMS from GitHub Actions using SMSAlert'
 inputs:
-  fromPhoneNumber:
-    description: 'Phone number in your Twilio account to send the SMS from'
+  senderid:
+    description: 'sendderid in your SMSAlert account to send the SMS from'
     required: true
   toPhoneNumber:
     description: 'Phone number to send the SMS to'
@@ -11,18 +11,15 @@ inputs:
   message:
     description: 'The message you want to send'
     required: true
-  TWILIO_ACCOUNT_SID:
-    description: 'A Twilio Account SID. Can alternatively be stored in environment'
+  SMSALERT_USERNAME:
+    description: 'A SMSAlert Username. Can alternatively be stored in environment'
     required: true
-  TWILIO_API_KEY:
-    description: 'A Twilio API Key. Can alternatively be stored in environment'
+  SMSALERT_PASSWORD:
+    description: 'A SMSAlert Password. Can alternatively be stored in environment'
     required: true
-  TWILIO_API_SECRET:
-    description: 'A Twilio API Secret. Can alternatively be stored in environment'
-    required: true
-outputs:
+  outputs:
   messageSid:
-    description: 'The Twilio Message SID'
+    description: 'The SMSAlert Message SID'
 runs:
   using: 'node12'
   main: 'dist/main.js'
