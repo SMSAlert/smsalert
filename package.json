@@ -1,5 +1,5 @@
 {
-  "name": "smsalert",
+  "name": "@brijkishor7828/smsalert",
   "version": "1.0.0",
   "description": "github actions to send sms",
   "main": "index.js",
