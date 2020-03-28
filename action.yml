@@ -17,7 +17,7 @@ inputs:
   SMSALERT_PASSWORD:
     description: 'A SMSAlert Password. Can alternatively be stored in environment'
     required: true
-  outputs:
+outputs:
   messageSid:
     description: 'The SMSAlert Message SID'
 runs:
