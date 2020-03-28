@@ -1,12 +1,12 @@
-name: "Nexmo Send SMS"
-description: "Send an SMS using Nexmo"
-author: "Nexmo <devrel@nexmo.com>"
+name: "SMSAlert Send SMS"
+description: "Send an SMS using SMSAlert"
+author: "SMSAlert"
 branding:
   icon: "smartphone"
   color: "blue"
 inputs:
-  nexmoNumber:
-    description: "The number to send an SMS from"
+  senderid:
+    description: "The senderid to send an SMS from"
     required: true
   recipientNumber:
     description: "The number to send an SMS to"
