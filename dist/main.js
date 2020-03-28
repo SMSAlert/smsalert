@@ -12,6 +12,7 @@ async function run() {
 	const sms = new SMS(username, password);
 	const resultMessage = sms.send(to, message,senderid);
     core.debug('SMS sent!');
+	core.debug(resultMessage.description);
 	core.setOutput('messageSid', resultMessage.description.batchid);
     return resultMessage;
 }
