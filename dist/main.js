@@ -1,20 +1,23 @@
 "use strict";
 const core = require('@actions/core');
-const SMS = require('smsalert');
+const twilio = require('twilio');
 async function run() {
-    const senderid = core.getInput('Senderid');
+    const from = core.getInput('fromPhoneNumber');
     const to = core.getInput('toPhoneNumber');
     const message = core.getInput('message');
-    const username = core.getInput('SMSALERT_USERNAME') || process.env.SMSALERT_USERNAME;
-    const password = core.getInput('SMSALERT_PASSWORD') || process.env.SMSALERT_PASSWORD;
-   
+    const accountSid = core.getInput('TWILIO_ACCOUNT_SID') || process.env.TWILIO_ACCOUNT_SID;
+    const apiKey = core.getInput('TWILIO_API_KEY') || process.env.TWILIO_API_KEY;
+    const apiSecret = core.getInput('TWILIO_API_SECRET') || process.env.TWILIO_API_SECRET;
     core.debug('Sending SMS');
-	const sms = new SMS(username, password)
-	sms.send(to, message,senderid)
-    .then(body => console.log(body)) // returns { message_id: 'string' }
-  .catch(err => console.log(err.message))
+    const client = twilio(apiKey, apiSecret, { accountSid });
+    const resultMessage = await client.messages.create({
+        from,
+        to,
+        body: message,
+    });
     core.debug('SMS sent!');
-    return body;
+    core.setOutput('messageSid', resultMessage.sid);
+    return resultMessage;
 }
 async function execute() {
     try {
