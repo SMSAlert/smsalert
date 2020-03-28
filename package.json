@@ -1,32 +1,42 @@
 {
-  "name": "nexmo-sms-action",
+  "name": "@twilio-labs/actions-sms",
   "version": "1.0.0",
-  "description": "Send an SMS via Nexmo using Github Actions",
-  "main": "index.js",
+  "description": "Send an SMS through GitHub Actions",
+  "main": "dist/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "test": "npm run build && jest"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nexmo-community/nexmo-sms-action.git"
+    "url": "git+https://github.com/twilio-labs/actions-sms.git"
   },
   "keywords": [
-    "Github",
-    "Actions",
-    "Github",
-    "Actions",
-    "Nexmo",
-    "SMS"
+    "github",
+    "actions",
+    "twilio",
+    "sms"
   ],
-  "author": "Nexmo <devrel@nexmo.com>",
+  "author": "Dominik Kundel <dkundel@twilio.com> (https://twilio.com/labs)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nexmo-community/nexmo-sms-action/issues"
+    "url": "https://github.com/twilio-labs/actions-sms/issues"
   },
-  "homepage": "https://github.com/nexmo-community/nexmo-sms-action#readme",
+  "homepage": "https://github.com/twilio-labs/actions-sms#readme",
   "dependencies": {
-    "@actions/core": "^1.1.1",
-    "nexmo": "^2.4.2",
-    "nexo": "0.0.53"
+    "@actions/core": "^1.1.0",
+    "request-promise": "^4.2.5",
+    "twilio": "^3.34.0"
+  },
+  "devDependencies": {
+    "husky": "^3.0.5",
+    "jest": "^24.9.0",
+    "typescript": "^3.6.3"
+  },
+  "husky": {
+    "skipCI": true,
+    "hooks": {
+      "post-commit": "npm prune --production && git add node_modules/* && git commit -m \"chore: update node_modules\" && npm install"
+    }
   }
 }

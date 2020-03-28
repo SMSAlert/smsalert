@@ -1,34 +1,36 @@
-# SMS Alert GitHub Action
+# Twilio SMS GitHub Action
 
 Send an SMS from GitHub Actions.
 
 ## Prerequisites
 
-- A SMSAlert Account. [Sign up for free](https://www.smsalert.co.in)
+- A Twilio Account. [Sign up for free](https://www.twilio.com/try-twilio)
+- A [Twilio API Key and Secret](https://www.twilio.com/docs/iam/keys/api-key)
 
 ## Usage
 
-1. Set up your credentials as secrets in your repository settings using `senderid`, `SMSALERT_USERNAME`, `SMSALERT_PASSWORD`
+1. Set up your credentials as secrets in your repository settings using `TWILIO_ACCOUNT_SID`, `TWILIO_API_KEY`, `TWILIO_API_SECRET`
 
 2. Add the following to your workflow
 
 ```yml
 - name: 'Sending SMS Notification'
-  uses: brijkishor7828/smsalert@v1
+  uses: twilio-labs/actions-sms@v1
   with:
-    fromPhoneNumber: ${{ secrets.senderid }}
-    toPhoneNumber: ${{ secrets.toPhoneNumber }}
-    message: 'Hello from github'
+    fromPhoneNumber: '+1(234)5678901'
+    toPhoneNumber: '+1(234)3334444'
+    message: 'Hello from Twilio'
   env:
-    SMSALERT_USERNAME: ${{ secrets.SMSALERT_USERNAME }}
-    SMSALERT_PASSWORD: ${{ secrets.SMSALERT_PASSWORD }}
-    ```
+    TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+    TWILIO_API_KEY: ${{ secrets.TWILIO_API_KEY }}
+    TWILIO_API_SECRET: ${{ secrets.TWILIO_API_SECRET }}
+```
 
 ## Inputs
 
 ### `fromPhoneNumber`
 
-**Required** senderid in your SMSAlert account to send the SMS from
+**Required** Phone number in your Twilio account to send the SMS from
 
 ### `toPhoneNumber`
 
@@ -38,15 +40,23 @@ Send an SMS from GitHub Actions.
 
 **Required** The message you want to send
 
-### `SMSALERT_USERNAME`
+### `TWILIO_ACCOUNT_SID`
 
-A SMSAlert Username. Can alternatively be stored in environment
+A Twilio Account SID. Can alternatively be stored in environment
 
-### `SMSALERT_PASSWORD`
+### `TWILIO_API_KEY`
 
-A SMSAlert Password. Can alternatively be stored in environment
+A Twilio API Key. Can alternatively be stored in environment
+
+### `TWILIO_API_SECRET`
+
+A Twilio API Secret. Can alternatively be stored in environment
 
 ## Outputs
+
+### `messageSid`
+
+The SID of the [message resource](https://www.twilio.com/docs/sms/api/message-resource#message-properties) associated with the SMS sent.
 
 ## Contributing
 
