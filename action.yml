@@ -1,6 +1,6 @@
 name: 'cozyvision-smsalert'
 author: 'SMSAlert'
-description: 'Send an SMS from GitHub Actions using SMS'
+description: 'Send an SMS from GitHub Actions using Twilio Programmable SMS'
 inputs:
   fromPhoneNumber:
     description: 'Phone number in your Twilio account to send the SMS from'
