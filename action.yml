@@ -1,4 +1,4 @@
-name: 'Smsalert'
+name: 'smsalert'
 author: 'Smsalert'
 description: 'Send an SMS from GitHub Actions using SMS Alert'
 inputs:
@@ -22,4 +22,4 @@ outputs:
     description: 'The Smsalert Message SID'
 runs:
   using: 'node12'
-  main: 'dist/main.js'
+  main: 'dist/index.js'
