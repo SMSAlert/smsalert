@@ -1,63 +1,96 @@
-# SMS Alert GitHub Action
+# Nexmo SMS Action
 
-Send an SMS from GitHub Actions.
-
-## Prerequisites
-
-- A SMSAlert Account. [Sign up for free](https://www.smsalert.co.in)
+Send an SMS from [GitHub Actions](https://github.com/features/actions) using [Nexmo](https://www.nexmo.com/). 
 
 ## Usage
 
-1. Set up your credentials as secrets in your repository settings using `senderid`, `SMSALERT_USERNAME`, `SMSALERT_PASSWORD`
+```workflow
+name: Push to master
+on: [push]
+jobs:
+  send-sms:
+    name: Send SMS
+    runs-on: ubuntu-latest
+    steps:
+    - name: Send SMS
+      uses: nexmo-community/nexmo-sms-action@master
+      env:
+        NEXMO_API_KEY: ${{ secrets.NEXMO_API_KEY }}
+        NEXMO_API_SECRET: ${{ secrets.NEXMO_API_SECRET }}
+      with:
+        nexmoNumber: ${{ secrets.NEXMO_NUMBER }}
+        recipientNumber: 14155512345
+        message: "New push on ${{ github.repository }} from ${{ github.actor }}"
+```
 
-2. Add the following to your workflow
+will send `New push on org-name/repo-name from your_username` to `14155512345`. 
 
-```yml
-- name: 'Sending SMS Notification'
-  uses: brijkishor7828/smsalert@v1
-  with:
-    fromPhoneNumber: ${{ secrets.senderid }}
-    toPhoneNumber: ${{ secrets.toPhoneNumber }}
-    message: 'Hello from github'
-  env:
-    SMSALERT_USERNAME: ${{ secrets.SMSALERT_USERNAME }}
-    SMSALERT_PASSWORD: ${{ secrets.SMSALERT_PASSWORD }}
-    ```
+If you don't want to expose your recipient number, you can use secrets.
 
-## Inputs
+For example, a new secret called `DEVOPS_NUMBER` could be used inside of `args` as follows:
 
-### `fromPhoneNumber`
+```workflow
+name: Push to master
+on: [push]
+jobs:
+  send-sms:
+    name: Send SMS
+    runs-on: ubuntu-latest
+    steps:
+    - name: Send SMS
+      uses: nexmo-community/nexmo-sms-action@master
+      env:
+        NEXMO_API_KEY: ${{ secrets.NEXMO_API_KEY }}
+        NEXMO_API_SECRET: ${{ secrets.NEXMO_API_SECRET }}
+      with:
+        nexmoNumber: ${{ secrets.NEXMO_NUMBER }}
+        recipientNumber: ${{ secrets.RECIPIENT_NUMBER }}
+        message: "New push on ${{ github.repository }} from ${{ github.actor }}"
+```
 
-**Required** senderid in your SMSAlert account to send the SMS from
+## Secrets
 
-### `toPhoneNumber`
+This action uses the following required secrets:
 
-**Required** Phone number to send the SMS to
+- `NEXMO_API_KEY` - Your Nexmo API Key.
+- `NEXMO_API_SECRET` - Your Nexmo API Secret.
+- `NEXMO_NUMBER` - A number on your Nexmo account without any spaces or symbols. Example: 15551231234
 
-### `message`
 
-**Required** The message you want to send
+## Event Information
 
-### `SMSALERT_USERNAME`
+All of the information attached to an event is available in the `github.event` variable. To see the possible values, you can use the following step in your workflow:
 
-A SMSAlert Username. Can alternatively be stored in environment
+```yaml
+- run: echo '${{ toJson(github.event) }}'
+```
 
-### `SMSALERT_PASSWORD`
+You can use this information in both the inputs for your action and to run the action conditionally.
 
-A SMSAlert Password. Can alternatively be stored in environment
+Here's an example of sending an SMS any time an issue is created with the urgent label:
 
-## Outputs
+```workflow
+name: Issue
+on:
+  issues:
+    types: [labeled]
+jobs:
+  send-sms:
+    name: Send SMS
+    runs-on: ubuntu-latest
+    steps:
+    - name: Send SMS
+      uses: nexmo-community/nexmo-sms-action@master
+      env:
+        NEXMO_API_KEY: ${{ secrets.NEXMO_API_KEY }}
+        NEXMO_API_SECRET: ${{ secrets.NEXMO_API_SECRET }}
+      with:
+        nexmoNumber: ${{ secrets.NEXMO_NUMBER }}
+        recipientNumber: ${{ secrets.RECIPIENT_NUMBER }}
+        message: "This urgent issue needs your attention: ${{ github.event.issue.html_url }}"
+      if: github.event.label.name == 'urgent'
+```
 
-## Contributing
-
-## Third Party Licenses
-
-This GitHub Action uses a couple of Node.js modules to work.
-
-License and other copyright information for each module are included in the release branch of each action version under `node_modules/{module}`.
-
-More information for each package can be found at `https://www.npmjs.com/package/{package}`
-
-## License
-
-[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
+[GitHub Actions]: https://github.com/actions
+[Nexmo]: https://developer.nexmo.com
+[jq]: https://stedolan.github.io/jq/

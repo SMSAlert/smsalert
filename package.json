@@ -1,24 +1,32 @@
 {
-  "name": "@brijkishor7828/smsalert",
+  "name": "nexmo-sms-action",
   "version": "1.0.0",
-  "description": "github actions to send sms",
+  "description": "Send an SMS via Nexmo using Github Actions",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/brijkishor7828/smsalert.git"
+    "url": "git+https://github.com/nexmo-community/nexmo-sms-action.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "Github",
+    "Actions",
+    "Github",
+    "Actions",
+    "Nexmo",
+    "SMS"
+  ],
+  "author": "Nexmo <devrel@nexmo.com>",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/brijkishor7828/smsalert/issues"
+    "url": "https://github.com/nexmo-community/nexmo-sms-action/issues"
   },
-  "homepage": "https://github.com/brijkishor7828/smsalert#readme",
+  "homepage": "https://github.com/nexmo-community/nexmo-sms-action#readme",
   "dependencies": {
-    "@actions/core": "^1.2.3",
-    "@actions/github": "^2.1.1"
+    "@actions/core": "^1.1.1",
+    "nexmo": "^2.4.2",
+    "nexo": "0.0.53"
   }
 }
