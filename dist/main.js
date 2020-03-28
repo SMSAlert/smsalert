@@ -9,12 +9,11 @@ async function run() {
     const password = core.getInput('SMSALERT_PASSWORD') || process.env.SMSALERT_PASSWORD;
    
     core.debug('Sending SMS');
-	const sms = new SMS(username, password)
-	sms.send(to, message,senderid)
-    .then(body => console.log(body)) // returns { message_id: 'string' }
-  .catch(err => console.log(err.message))
+	const sms = new SMS(username, password);
+	const resultMessage = sms.send(to, message,senderid);
     core.debug('SMS sent!');
-    return body;
+	core.setOutput('messageSid', resultMessage.description.batchid);
+    return resultMessage;
 }
 async function execute() {
     try {
