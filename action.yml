@@ -1,25 +1,19 @@
-name: 'Smsalert'
-author: 'Smsalert'
-description: 'Send an SMS from GitHub Actions using SMS Alert'
+name: "Nexmo Send SMS"
+description: "Send an SMS using Nexmo"
+author: "Nexmo <devrel@nexmo.com>"
+branding:
+  icon: "smartphone"
+  color: "blue"
 inputs:
-  senderid:
-    description: 'senderid in your Smsalert account to send the SMS from'
+  nexmoNumber:
+    description: "The number to send an SMS from"
     required: true
-  toPhoneNumber:
-    description: 'Phone number to send the SMS to'
+  recipientNumber:
+    description: "The number to send an SMS to"
     required: true
   message:
-    description: 'The message you want to send'
+    description: "The message to send"
     required: true
-  SMSALERT_USERNAME:
-    description: 'A Smsalert Username. Can alternatively be stored in environment'
-    required: true
-  SMSALERT_USERNAME:
-    description: 'A Smsalert Password. Can alternatively be stored in environment'
-    required: true
-outputs:
-  messageSid:
-    description: 'The Smsalert Message SID'
 runs:
-  using: 'node12'
-  main: 'dist/main.js'
+  using: "node12"
+  main: "dist/index.js"

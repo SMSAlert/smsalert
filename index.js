@@ -1,29 +1,18 @@
-"use strict";
 const core = require('@actions/core');
-const SMS = require('smsalert');
-async function run() {
-    const senderid = core.getInput('senderid');
-    const to = core.getInput('toPhoneNumber');
-    const message = core.getInput('message');
-    const username = core.getInput('SMSALERT_USERNAME') || process.env.SMSALERT_USERNAME;
-    const password = core.getInput('SMSALERT_PASSWORD') || process.env.SMSALERT_PASSWORD;
-   
-    core.debug('Sending SMS');
-	const sms = new SMS(username, password)
-	sms.send(to, message,senderid)
-    .then(body => console.log(body)) // returns { message_id: 'string' }
-  .catch(err => console.log(err.message))
-    core.debug('SMS sent!');
-    return body;
-}
-async function execute() {
-    try {
-        return await run();
+const Nexmo = require('nexmo');
+
+const nexmo = new Nexmo({
+  "apiKey": process.env.NEXMO_API_KEY,
+  "apiSecret": process.env.NEXMO_API_SECRET,
+});
+
+nexmo.message.sendSms(
+  core.getInput('nexmoNumber'),
+  core.getInput('recipientNumber'),
+  core.getInput('message'),
+  function(err, data) {
+    if (err) {
+     return core.setFailed(err);
     }
-    catch ({ message }) {
-        core.error('Failed to send message', message);
-        core.setFailed(message);
-    }
-}
-module.exports = execute;
-execute();
+  }
+);
