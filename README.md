@@ -14,19 +14,19 @@ Send an SMS from GitHub Actions.
 
 ```yml
 - name: 'Sending SMS Notification'
-  uses: brijkishor7828/smsalert@v1
-  with:
-    fromPhoneNumber: ${{ secrets.senderid }}
-    toPhoneNumber: ${{ secrets.toPhoneNumber }}
-    message: 'Hello from github'
-  env:
-    SMSALERT_USERNAME: ${{ secrets.SMSALERT_USERNAME }}
-    SMSALERT_PASSWORD: ${{ secrets.SMSALERT_PASSWORD }}
+      uses: brijkishor7828/smsalert@master
+      env:
+        SMSALERT_USERNAME: ${{ secrets.SMSALERT_USERNAME }}
+        SMSALERT_PASSWORD: ${{ secrets.SMSALERT_PASSWORD }}
+      with:
+        senderid: ${{ secrets.senderid }}
+        toPhoneNumber: ${{ secrets.MY_PHONE_NUMBER }}
+        message: "New push on ${{ github.repository }} from ${{ github.actor }}"
     ```
 
 ## Inputs
 
-### `fromPhoneNumber`
+### `senderid`
 
 **Required** senderid in your SMSAlert account to send the SMS from
 
