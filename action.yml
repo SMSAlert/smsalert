@@ -14,7 +14,7 @@ inputs:
   SMSALERT_USERNAME:
     description: 'A Smsalert Username. Can alternatively be stored in environment'
     required: true
-  SMSALERT_USERNAME:
+  SMSALERT_PASSWORD:
     description: 'A Smsalert Password. Can alternatively be stored in environment'
     required: true
 outputs:
