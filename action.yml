@@ -11,10 +11,10 @@ inputs:
   message:
     description: 'The message you want to send'
     required: true
-  TWILIO_ACCOUNT_SID:
+  SMSALERT_USERNAME:
     description: 'A Twilio Account SID. Can alternatively be stored in environment'
     required: true
-  TWILIO_API_KEY:
+  SMSALERT_PASSWORD:
     description: 'A Twilio API Key. Can alternatively be stored in environment'
     required: true
   TWILIO_API_SECRET:
