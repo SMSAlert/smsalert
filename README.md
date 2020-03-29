@@ -12,11 +12,8 @@ Send an SMS from GitHub Actions.
 
 2. Add the following to your workflow
 
-<<<<<<< HEAD
 ```yml
-=======
->>>>>>> aa9820cf69a690cd379de67a95412cfc4b06a29d
- - name: 'Sending SMS Notification'
+- name: 'Sending SMS Notification'
       uses: brijkishor7828/smsalert@master
       with:
         senderid: ${{ secrets.senderid }}
@@ -25,10 +22,7 @@ Send an SMS from GitHub Actions.
       env:
         SMSALERT_USERNAME: ${{ secrets.SMSALERT_USERNAME }}
         SMSALERT_PASSWORD: ${{ secrets.SMSALERT_PASSWORD }}
-<<<<<<< HEAD
     ```
-=======
->>>>>>> aa9820cf69a690cd379de67a95412cfc4b06a29d
 
 ## Inputs
 
