@@ -12,17 +12,15 @@ Send an SMS from GitHub Actions.
 
 2. Add the following to your workflow
 
-```yml
-- name: 'Sending SMS Notification'
+ - name: 'Sending SMS Notification'
       uses: brijkishor7828/smsalert@master
-      env:
-        SMSALERT_USERNAME: ${{ secrets.SMSALERT_USERNAME }}
-        SMSALERT_PASSWORD: ${{ secrets.SMSALERT_PASSWORD }}
       with:
         senderid: ${{ secrets.senderid }}
         toPhoneNumber: ${{ secrets.MY_PHONE_NUMBER }}
-        message: "New push on ${{ github.repository }} from ${{ github.actor }}"
-    ```
+        message: 'Hello from github'
+      env:
+        SMSALERT_USERNAME: ${{ secrets.SMSALERT_USERNAME }}
+        SMSALERT_PASSWORD: ${{ secrets.SMSALERT_PASSWORD }}
 
 ## Inputs
 
