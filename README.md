@@ -14,7 +14,7 @@ Send an SMS from GitHub Actions.
 
 ```yml
 - name: 'Sending SMS Notification'
-  uses: brijkishor7828/smsalert@v1
+  uses: cozyvision/smsalert@v1
   with:
     senderid: ${{ secrets.senderid }}
     toPhoneNumber: ${{ secrets.toPhoneNumber }}
