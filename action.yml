@@ -1,5 +1,5 @@
-name: 'cozyvision-smsalert'
-author: 'SMSAlert'
+name: 'smsalert'
+author: 'cozyvision'
 description: 'Send an SMS from GitHub Actions using SMSAlert'
 inputs:
   senderid:
