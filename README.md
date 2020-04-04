@@ -8,7 +8,7 @@ Send an SMS from GitHub Actions.
 
 ## Usage
 
-1. Set up your credentials as secrets in your repository settings using `senderid`, `SMSALERT_USERNAME`, `SMSALERT_PASSWORD`
+1. Set up your credentials as secrets in your repository settings using `senderid`, `SMSALERT_USERNAME`, `SMSALERT_PASSWORD`,`toPhoneNumber`,`message`
 
 2. Add the following to your workflow
 
@@ -18,7 +18,7 @@ Send an SMS from GitHub Actions.
   with:
     senderid: ${{ secrets.senderid }}
     toPhoneNumber: ${{ secrets.toPhoneNumber }}
-    message: 'Hello from github'
+    message: ${{ secrets.message }}
   env:
     SMSALERT_USERNAME: ${{ secrets.SMSALERT_USERNAME }}
     SMSALERT_PASSWORD: ${{ secrets.SMSALERT_PASSWORD }}
