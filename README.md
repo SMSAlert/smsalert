@@ -10,18 +10,45 @@ Send an SMS from GitHub Actions.
 
 1. Set up your credentials as secrets in your repository settings using `senderid`, `SMSALERT_USERNAME`, `SMSALERT_PASSWORD`,`toPhoneNumber`,`message`
 
-2. Add the following to your workflow
+2. Add the following to your workflow (you can add more events on which you want to receive sms)
 
 ```yml
-- name: 'Sending SMS Notification'
-  uses: Smsalert/smsalert@v1
-  with:
-    senderid: ${{ secrets.senderid }}
-    toPhoneNumber: ${{ secrets.toPhoneNumber }}
-    message: ${{ secrets.message }}
-  env:
-    SMSALERT_USERNAME: ${{ secrets.SMSALERT_USERNAME }}
-    SMSALERT_PASSWORD: ${{ secrets.SMSALERT_PASSWORD }}
+name: Node.js Package
+
+on:
+ issues:
+   types: [opened, edited, milestoned]
+ push:
+ pull_request:
+   branches:
+     - master
+ page_build:
+ release:
+   types: [created]
+ delete:
+ deployment:
+ fork:
+ label:
+   types: [created, deleted]
+ milestone:
+   types: [opened, deleted]
+ project:
+   types: [created, deleted]
+ 
+jobs:
+ send-sms:
+   name: Send SMS
+   runs-on: ubuntu-latest
+   steps:
+   - name: 'Sending SMS Notification'
+     uses: SMSAlert/smsalert@master
+     with:
+       senderid: ${{ secrets.senderid }}
+       toPhoneNumber: ${{ secrets.toPhoneNumber }}
+       message: ${{ secrets.message }}
+     env:
+       SMSALERT_USERNAME: ${{ secrets.SMSALERT_USERNAME }}
+       SMSALERT_PASSWORD: ${{ secrets.SMSALERT_PASSWORD }}
 ```
 
 ## Inputs
